@@ -238,6 +238,118 @@ I utilized the following code - *fraud_df['trans_num'].value_counts().plot()* - 
 
 # Data Preparation
 
+I have completed the Data Understanding stage.  I will transition to preparing the data for modeling via the following stages:
+
+**Duplicate Data**
+
+- Remove Duplicates
+
+**Columns to Drop**
+
+- Remove the Merchant column, or *fraud_df['merchant']*
+- Remove the City of Credit Card Holder column, or *fraud_df['city']*
+- Remove the Job of Credit Card Holder column, or *fraud_df['job']*
+- Remove the Date of Birth column, or *fraud_df['dob']*
+- Remove the Transaction Number column, or *fraud_df['trans_num']*
+
+**Reclassify Data Entries in the Category (of Merchant) column**
+
+- For the rows in which there is an entry of *food_dining*, reclassify to *entertainment*
+
+**Reclassify Data Entries in the 'Whether Transaction is Fraud or Not' Column**
+
+- For the row in which there is an entry of *0"2019-01-01 00:00:44"*, reclassify it to 0
+- For the row in which there is an entry of *1"2020-12-24 16:56:24"*, reclassify it to 1
+- Change the data type of the column from *string* to *integer*
+
+**State of Credit Card Holder**
+
+- For the rows in which *CA* is listed, reclassify to *California*
+- Reclassify others states into US regions (i.e. - West, Southwest, and Midwest)
+- Rename state column as region
+
+**Transaction Date | Transaction Time Column**
+
+- Create a hour column based on the Transaction Date | Transaction Time Column
+- Create a month column based on the Transaction Date | Transaction Time Column
+- Create a year column based on the Transaction Date | Transaction Time Column
+
+## Duplicate Data
+
+I utilized the following code - *fraud_df.drop_duplicates(inplace=True)* - to remove the duplicates from the *fraud_df* dataframe.  There were originally 14,446 rows of data.  There are currently 14,383 rows of data.
+
+## Columns to Drop
+
+I utilized the following code - *fraud_df.drop(columns=['merchant', 'city', 'job', 'trans_num'], inplace=True)* to remove the following columns:
+
+- Merchant - *fraud_df['merchant']*
+- City of Credit Card Holder - *fraud_df['city']*
+- Date of B*fraud_df['dob']*
+- *fraud_df['job']*
+- *fraud_df['trans_num']* 
+
+Due to high cardinality, I removed the aforementioned columns.  There were originally fifteen columns in the dataframe.  There are currently 10 columns in the dataframe.
+
+## Category (of Merchant) Column
+
+I utilized the following code - *fraud_df['category'] = fraud_df['category'].str.replace('food_dining', 'entertainment')* - to reclassify the 'food_dining' values into 'entertainment'.  There were originally 949 credit card transactions for entertainment.  There are currently 1,818 credit card transaction values for entertainment.  Bar chart is below to display the breakdown.
+
+![Breakdown of Merchant Category Column](image_11.png)
+
+## Whether Transaction is Fraud or Not Column
+
+The data cleaning and preparation for the Fraud column is complete.  There are currently 12,601 cases of no fraud, and 1,782 cases of Fraud.  A breakdown is shown via bar chart below.
+
+![Breakdown of Fraud Cases](image_12.png)
+
+## State of Credit Card Holder
+
+I have completed grouping the states into regions based on the following source: [National Geographic United States Regions](https://education.nationalgeographic.org/resource/united-states-regions/).  I decided to maintain California as its own since it is the state with the most credit card transactions.
+
+I also renamed the state column as region.  The bar chart below provides a breakdown of credit card transactions by region.
+
+![Breakdown of Credit Card Transactions by Region](image_13.png)
+
+## Transaction Date | Transaction Time Column
+
+### Creating Hour Column
+
+I have created a new column titled *fraud_df['hour']*.  An interesting observation is that the number of credit card transactions increases as midnight approaches.  The bar chart below reflects the breakdown of credit card transactions by the hour.
+
+![Breakdown of Credit Card Transactions by Top 10 Hour Time Slots](image_14.png)
+
+Based on the aforementioned bar chart - *Breakdown of Top 10 Credit Card Transactions by Hour* - I assumed that most of the fraud cases took place as midnight approached.
+
+To investigate this, I utilized the dataframe I created that only contained the fraud cases.  It is called *all_fraud_cases*.  Based on the following bar chart - *Breakdown of Fraud Cases by Top 10 Hour Time Slots* - it seems my assumption is true.  As midnight approaches, the number of fraud cases increases.
+
+![Breakdown of Fraud Cases by Top 10 Hour Time Slots](image_15.png)
+
+### Creating Month Column
+
+I have created a new column titled *fraud_df['month']*.  An interesting observation is that the number of credit card transactions increases around the months of December and January.  This time of the year is associated with the holidays (i.e. - Christmas).  
+
+The bar chart below reflects the breakdown of credit card transactions by months of the year.
+
+![Breakdown of Credit Card Transactions by Month](image_16.png)
+
+Based on the aforementioned bar chart - *Breakdown of Credit Card Transactions by Month* - I assumed that most of the fraud cases took place around December and January.
+
+To investigate this, I utilized the dataframe I created that only contained the fraud cases.  Based on the following bar chart - *Breakdown of Fraud Cases by Month* - it seems my assumption is not entirely true.  In comparison to the other months, January had the highest number of fraud cases.  The number of fraud cases in January is 223.  
+
+December ranked third to last in respect to the number of fraud cases.  The number of fraud cases is 138.
+
+![Breakdown of Fraud Cases by Month](image_17.png)
+
+### Creating Year Column
+
+In respect to year, the credit card transactions are only broken down by two years - 2019 and 2020.  In other words, the dataset only has data for 2019 and 2020.  I will drop the column from the dataframe.  Interim, there is a bar chart below that provides a breakdown of credit card transactions by year.
+
+![Breakdown of Credit Card Transactions by Year](image_18.png)
+
+### Dropping the Transaction Date | Transaction Time Column
+
+I utilized the following code - *fraud_df.drop(columns='trans_date_trans_time', inplace=True)* - to drop the Transaction Date | Transaction Time Column.
+
 # Modeling
 
 # Overall Conclusion and Recommendations
