@@ -352,6 +352,437 @@ I utilized the following code - *fraud_df.drop(columns='trans_date_trans_time', 
 
 # Modeling
 
+I have completed the Data Preparation stage.  I will use three sets of models for detecting credit card fraud.  The algorithms are listed below:
+
+- Decision Tree
+- Random Forest
+- Gradient Boosting
+
+I utilized the following code - *X = pd.get_dummies(X, drop_first=True)* - to create dummy variables for the categorical variables.
+
+There are a total of 24 columns in the X variable.  This is due to the Category of Merchant column containing 14 unique values, which are the following:
+
+- *entertainment*     
+- *grocery_pos*       
+- *gas_transport*     
+- *shopping_net*      
+- *shopping_pos*      
+- *home*              
+- *kids_pets*        
+- *personal_care*      
+- *health_fitness*     
+- *misc_pos*           
+- *misc_net*           
+- *grocery_net*        
+- *travel*
+
+In addition, the Region column contains 5 different unique values, which are the following:
+
+- California
+- Midwest
+- Southwest
+- West
+
+## Baseline Decision Tree Model
+
+![Baseline Decision Tree Model Confusion Matrix](image_19.png)
+
+![Baseline Decision Tree Model Receiver operating characteristic (ROC) Curve](image_20.png)
+
+![Baseline Decision Tree Model Precision Recall Curve](image_21.png)
+
+### Baseline Decision Tree Model | Conclusion
+
+I have concluded creating a Baseline Decision Tree model.
+
+When the baseline model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 100.0%
+- Recall: 100.0%
+- Accuracy: 100.0%
+- F1 Score: 100.0%
+    
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 91.4%
+- Recall: 91.7%
+- Accuracy: 97.9%
+- F1 Score: 91.6%
+      
+This model has slight overfitting due to the discrepancies in the training and test metrics.
+
+I also want to point out that recall wil be the key model evaluation metric.
+
+Accuracy is not appropriate since there is a class imbalance.  It is ideal to improve precision.  Improving model precision will lower the amount of false positives.  In the case of credit card fraud, a false positive is the model stating that an individual committed credit card fraud; however, in reality, the individual did not commit credit card fraud.
+
+Improving model recall will lower the amount of false negatives.  In the case of credit card fraud, a false negative is the model stating that an individual did not commit credit card fraud; however, in reality, the individual did commit credit card fraud.
+
+Provided the aforementioned context, a false negative is more detrimental than a false positive.  As a result, recall will be the key model evaluation metric.
+
+I am going to proceed by tuning the decision tree classifier.
+
+## Tuning the Baseline Decision Tree Model
+
+There are multiple variables in which I want to tune the decision tree classifier. I will currently focus on the following:
+
+- Maximum Tree Depth (*max_depth*) - depth of the decision tree, the maximum number of splits a decision tree can have before continue to grow
+- Minimum Sample Split (*min_samples_split*) - minimum number of samples required to split an internal node
+- Minimum Sample Leafs (*min_samples_leaf*) - minimum number of samples for a leaf node, or terminal node
+- Maximum Features (*max_features*) - maximum number of features considered for making a split at a tree node
+
+![Maximum Tree Depth for the Decision Tree Model](image_22.png)
+
+The optimal tree depth is approximately 4.  After a tree depth of 4, the AUC scores for the train and test data begin to bifurcate.
+
+![Minimum Sample Split for the Decision Tree Model](image_23.png)
+
+The optimal minimum sample split is approximately 0.1.  The AUC scores for the train and test data tend to move together; however, the AUC scores for the train and test data continue to decrease.
+
+![Minimum Sample Leaf for the Decision Tree Model](image_24.png)
+
+The optimum minimum sample leaf is approximately 0.10.  The AUC scores associated with the train and test data tend to remain converged; however, the AUC scores for the train and test data continue to decrease.
+
+![Maximum Features for the Decision Tree Model](image_25.png)
+
+There is no optimal value for Maximum Features.  The AUC scores for the train and test data remain disparate throughout the graph.
+
+I have found the approximate optimal values for Maximum Tree Depth, Minimum Sample Split, and Minimum Sample Leaf. I will create a pipeline and grid search cv that will not only incorporate the aforementioned values, but vary the Decision Tree model criterion and Decision Tree class weight.
+
+I have created the pipeline and grid search object.  When I utilized the following code - *grid_clf_tune.best_params_* - the optimal values are the following:
+
+- class weight: balanced
+- criterion: entropy
+- maximum depth: 3
+- minimum samples leaf: 0.15
+- minimum samples split: 0.1
+
+![Confusion Matrix for Tuned Decision Tree Model](image_26.png)
+
+![Baseline Decision Tree Model Receiver operating characteristic (ROC) Curve](image_27.png)
+
+![Baseline Decision Tree Model Precision Recall Curve](image_28.png)
+
+### Tuned Decision Tree Model | Conclusion
+
+**Baseline Decision Tree Model**
+
+When the baseline model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 100.0%
+- Recall: 100.0%
+- Accuracy: 100.0%
+- F1 Score: 100.0%
+
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 91.4%
+- Recall: 91.7%
+- Accuracy: 97.9%
+- F1 Score: 91.6%
+
+**Tuned Decision Tree Model**
+
+When the tuned model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 35.1%
+- Recall: 95.0%
+- Accuracy: 77.8%
+- F1 Score: 51.3%
+
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 34.9%
+- Recall: 94.3%
+- Accuracy: 77.1%
+- F1 Score: 51.0%
+
+**Conclusions**
+
+Recall is the key model evaluation metric.  The Tuned Decision Tree Model outperforms the Baseline Decision Tree Model.  In addition, overfitting has been reduced with the Tuned Decision Tree Model.  
+
+The Tuned Decision Tree model's evaluation metrics - precision, accuracy, and F1 - decreased relative to the Baseline Decision Tree Model's precision, accuracy, and F1 scores.  This is evidenced by the Tuned Decision Tree Model's ROC curve and precision-recall curve.  I consider the aforementioned relative decrease a trade-off.
+
+The Tuned Decision Tree Model is the best model so far.
+
+I will proceed with created another set of models via Random Forest algorithm.
+
+## Baseline Random Forest Model
+
+![Baseline Random Forest Model Confusion Matrix](image_29.png)
+
+![Baseline Random Forest Model Receiver operating characteristic (ROC) Curve](image_30.png)
+
+![Baseline Random Forest Model Precision Recall Curve](image_31.png)
+
+### Baseline Random Forest Model | Conclusion
+
+I have concluded creating a Baseline Decision Tree model.
+
+When the baseline model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 100.0%
+- Recall: 100.0%
+- Accuracy: 100.0%
+- F1 Score: 100.0%
+
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 95.5%
+- Recall: 89.2%
+- Accuracy: 98.1%
+- F1 Score: 92.2%
+
+This model has slight overfitting due to the discrepancies in the training and test metrics.
+
+I am going to proceed by tuning the random forest model.
+
+## Tuned Random Forest Model
+
+There are multiple variables in which I want to tune the random forest model. I will currently focus on the following:
+
+- Maximum Tree Depth (max_depth) - depth of the decision tree, the maximum number of splits a decision tree can have before continue to grow
+- Minimum Sample Split (min_samples_split) - minimum number of samples required to split an internal node
+- Minimum Sample Leafs (min_samples_leaf) - minimum number of samples for a leaf node, or terminal node
+- Maximum Features (max_features) - maximum number of features considered for making a split at a tree node
+
+![Maximum Tree Depth for the Random Forest Model](image_32.png)
+
+The optimal maximum tree depth is approximately 3.  After a tree depth of approximately 3, the AUC scores for the test and train data start to bifurcate.
+
+![Minimum Sample Split for the Random Forest Model](image_33.png)
+
+The optimal minimum sample split is approximately 0.1.  After approximately 0.1, the AUC scores for the test and train data remain converged; however, the AUC scores for the train and test data decrease throughout the graph.
+
+![Minimum Sample Leaf for the Random Forest Model](image_34.png)
+
+The optimal minimum sample leaf is approximately 0.10.  The AUC scores for the training and test data are together throughout the graph; however, the AUC scores for the training and test data decreases.
+
+![Maximum Features for the Random Forest Model](image_35.png)
+
+The optimal minimum sample leaf is approximately 0.10.  The AUC scores for the training and test data are together throughout the graph; however, the AUC scores for the training and test data decreases.
+
+There is no optimal maximum features identified in the graph.  The AUC scores for the training and test data are bifurcated throughout the graph.
+
+I have found the approximate optimal values for Maximum Tree Depth, Minimum Sample Split, and Minimum Sample Leafs. I will create a pipeline and grid search cv that will not only incorporate the aforementioned values, but vary the Random Forest Model criterion and class weight.
+
+I have created the pipeline and grid search object. When I utilized the following code - grid_clf_tune.best_params_ - the optimal values are the following:
+
+- class weight: balanced
+- criterion: entropy
+- maximum depth: 1
+- minimum samples leaf: 0.25
+- minimum samples split: 0.5
+
+![Confusion Matrix for Tuned Random Forest Model](image_36.png)
+
+![Tuned Random Forest Model Receiver operating characteristic (ROC) Curve](image_37.png)
+
+![Tuned Random Forest Model Precision Recall Curve](image_38.png)
+
+### Tuned Random Forest Model | Conclusion
+
+**Baseline Random Forest Model**
+
+When the baseline model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 100.0%
+- Recall: 100.0%
+- Accuracy: 100.0%
+- F1 Score: 100.0%
+
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 95.5%
+- Recall: 89.2%
+- Accuracy: 98.1%
+- F1 Score: 92.2%
+
+**Tuned Random Forest Model**
+
+When the tuned model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 30.2%
+- Recall: 76.7%
+- Accuracy: 75.3%
+- F1 Score: 43.3%
+
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 31.4%
+- Recall: 77.6%
+- Accuracy: 75.8%
+- F1 Score: 44.7%
+
+**Conclusions**
+
+The Tuned Random Forest Model minimized the overfitting.  However, the Baseline Random Forest Model outperforms the Tuned Random Forest Model.  As a reminder, recall is the key model evaluation metric.
+
+I will proceed with created another set of models via Gradient Boosting algorithm.
+
+## Baseline Gradient Boosting Model
+
+![Baseline Gradient Boosting Model Confusion Matrix](image_39.png)
+
+![Baseline Gradient Boosting Model Receiver operating characteristic (ROC) Curve](image_40.png)
+
+![Baseline Gradient Boosting Model Precision Recall Curve](image_41.png)
+
+### Baseline Gradient Boosting Model
+
+I have concluded creating the Baseline Gradient Boosting Model.
+
+When the baseline model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 96.2%
+- Recall: 91.1%
+- Accuracy: 98.5%
+- F1 Score: 93.6%
+
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 94.6%
+- Recall: 89.3%
+- Accuracy: 98.0%
+- F1 Score: 91.9%
+
+There is minimal overfitting with this model.
+
+I will proceed with tuning the Gradient Boosting Model.
+
+## Tuning Gradient Boosting Model
+
+There are multiple variables in which I want to tune the random forest model. I will currently focus on the following:
+
+- Maximum Tree Depth (max_depth) - depth of the decision tree, the maximum number of splits a decision tree can have before continue to grow
+- Minimum Sample Split (min_samples_split) - minimum number of samples required to split an internal node
+- Minimum Sample Leafs (min_samples_leaf) - minimum number of samples for a leaf node, or terminal node
+- Maximum Features (max_features) - maximum number of features considered for making a split at a tree node
+
+![Maximum Tree Depth for the Gradient Boosting Model](image_42.png)
+
+The optimal maximum tree depth is approximately 2.  After a tree depth of 2, the AUC scores of the test data and training data start to bifurcate.
+
+![Minimum Sample Split for the Gradient Boosting Model](image_43.png)
+
+There is no optimal minimum sample split identified.  The AUC scores for the training data and test data are bifurcated throughout the graph.
+
+![Minimum Sample Leaf for the Gradient Boosting Model](image_44.png)
+
+The optimal minimum sample leaf is approximately 0.10.  As the number of minimum sample leafs increase via the graph, the AUC scores for the training data and test data move together.  However, the scores for the training data and test data decreases.
+
+![Maximum Features for the Gradient Boosting Model](image_45.png)
+
+There is no optimal maximum features identified.  Throughout the graph, the AUC scores for the training and test data are bifurcated.
+
+I have found the approximate optimal values for Maximum Tree Depth and Minimum Sample Leaf. I will create a pipeline and grid search cv that will not only incorporate the aforementioned values, but vary the Gradient Boosting Model criterion, loss, learning rate, and minimum weight fraction leaf.
+
+I have created the pipeline and grid search object. When I utilized the following code - grid_gdb_tune.best_params_ - the optimal values are the following:
+
+- criterion: friedman mse
+- learning rate: 0.2
+- loss: log loss
+- maximum depth: 4
+- minimum sample leaf: 0.05
+- minimum weight fraction: 0.0
+
+![Confusion Matrix for Tuned Gradient Boosting Model](image_46.png)
+
+![Tuned Gradient Boosting Model Receiver operating characteristic (ROC) Curve](image_47.png)
+
+![Tuned Gradient Boosting Model Precision Recall Curve](image_48.png)
+
+### Tuned Gradient Boosting Model | Conclusion
+
+**Baseline Gradient Boosting Model**
+
+When the baseline model utilizes the training data, the evaluation metrics are the following:
+    
+- Precision: 96.2%
+- Recall: 91.1%
+- Accuracy: 98.5%
+- F1 Score: 93.6%
+    
+When the baseline model utilizes the test data, the evaluation metrics are the following:
+
+- Precision: 94.6%
+- Recall: 89.3%
+- Accuracy: 98.0%
+- F1 Score: 91.9%
+    
+**Tuned Gradient Boosting Model**
+
+When the tuned model utilizes the training data, the evaluation metrics are the following:
+
+- Precision: 95.4%
+- Recall: 92.9%
+- Accuracy: 98.6%
+- F1 Score: 94.1%
+    
+When the tuned model utilizes the test data, the evaluation metrics are the following:
+    
+- Precision: 92.5%
+- Recall: 91.0%
+- Accuracy: 97.9%
+- F1 Score: 91.7%
+
+**Conclusions**
+
+There is minimal overfitting with the Tuned Gradient Boosting Model.  In addition, the Tuned Grading Boosting Model performs better than the Baseline Gradient Boosting Model.  
+
+## Modeling | Conclusion
+
+The key model evaluation metric is recall.  The recall values for each of the models are the following:
+
+- Baseline Decision Tree Model (91.7%)
+- Tuned Decision Tree Model (94.3%)
+- Baseline Random Forest Model (89.2%)
+- Tuned Random Forest Model (77.6%)
+- Baseline Gradient Boosting Model (89.3%)
+- Tuned Gradient Boosting Model (92.9%)
+
+Since the key model evaluation metric is recall, the Tuned Decision Tree Model performs the best.
+
+I will proceed by identifying which features, or characteristics, are the most important for the Tuned Decision Tree Model.
+
+## Feature Importance of the Tuned Decision Tree Model
+
+I utilized the following code - *feature_importances_* - to identify which features are most important in the Tuned Decision Tree Model.
+
+Transaction Amount has a (importance) score of 0.867.  And Month has a (importance) score of 0.133.
+
+The bar graph below displays the breakdown of the feature importance scores.
+
+![Breakdown of Feature Importance Scores for Transaction Column](image_49.png)
+
+### Transaction Amount vs. Fraud
+
+I utilized the following code - *fraud_df['amt'].describe()* - to re-examine the Credit Card Transaction Amount column.  More importantly, I wanted to see how the data is distributed.
+
+The data is positively skewed.  This is evidenced by the mean, or approximately 122.71, being greater than the median, or approximatley 51.29.  I created a histogram below in order to visualize the positive skew.
+
+![Histogram of Credit Card Transaction Amount](image_50.png)
+
+I want to explore importance of Transactions within the Decision Tree Model and dataframe as a whole.  I will start by creating a new column that create bins for the *fraud_df['amt']* column.  The new column will be Amount Breakdown, or *fraud_df['amt_breakdown']*.  The breakdown of the bins are the following:
+
+- 0 to 249.99
+- 250 to 499.99
+- 500 to 749.99
+- 750 to 999.99
+- 1000 to 1249.99
+- 1250 to 1499.99
+- 1500 to 1749.99
+- 1750 to 1999.99
+- 2000 to 2249.99
+- 2250 to 2499.99
+- 2500 to 2749.99
+- 2750 to 2999.99
+- 3000 to 3249.99
+- 3250 to 3499.99
+
+![Transaction Amount against Fraud](image_51.png)
+
+![Transaction Amount against Fraud (Initial 6 Segments)](image_52.png)
+
 # Overall Conclusion and Recommendations
 
 ## Overall Conclusion
