@@ -94,7 +94,7 @@ Based on the observations, there is a high degree of cardinality, or many unique
     
 I utilized the following code - *fraud_df['merchant'].value_counts().plot()* - to provide a visualization of the high cardinality, which is below.
 
-![Merchant - High Cardinality](image_2.png)
+![Merchant - High Cardinality](images/image_2.png)
 
 ### Category (of Merchant)
 
@@ -114,7 +114,7 @@ Based on the observations, there is a low degree of cardinality, or few unique v
     
 I utilized the following code - *fraud_df['category'].value_counts().plot()* - to provide a visualization of the low cardinality, which is below.
 
-![Category - High Cardinality](image_3.png)
+![Category - High Cardinality](images/image_3.png)
 
 I created a dataframe that only has the fradulent credit card transactions.  The top five merchant values that have fradulent transactionss are the following:
 
@@ -128,7 +128,7 @@ Upon observing the data, I see there are opportunities to group some of the merc
 
 I also created a bar chart to represent which merchant values have the most fradulent cases.  The bar chart is below.
 
-![Breakdown of Fraud Cases for each Merchant](image_4.png)
+![Breakdown of Fraud Cases for each Merchant](images/image_4.png)
 
 ### City of Credit Card Holder
 
@@ -148,7 +148,7 @@ Based on the observations, there is a high degree of cardinality, or many unique
     
 I utilized the following code - *fraud_df['city'].value_counts().plot()* - to provide a visualization of the high cardinality, which is below.
 
-![City - High Cardinality](image_5.png)
+![City - High Cardinality](images/image_5.png)
 
 ### State of Credit Card Holder
 
@@ -168,7 +168,7 @@ Based on the observations, there is a low degree of cardinality, or few unique v
     
 I utilized the following code - *fraud_df['state'].value_counts().plot()* - to provide a visualization of the low cardinality, which is below.
 
-![State - High Cardinality](image_6.png)
+![State - High Cardinality](images/image_6.png)
 
 I leveraged the dataframe that only has the fradulent credit card transactions.  The top five states that have fradulent transactionss are the following:
 
@@ -182,7 +182,7 @@ Upon observing the data, I see there are opportunities to group some of the stat
 
 I also created a bar chart to represent which states have the most fradulent cases.  The bar chart is below.
 
-![Breakdown of Fraud Cases by State](image_7.png)
+![Breakdown of Fraud Cases by State](images/image_7.png)
 
 ### Job of Credit Card Holder
 
@@ -202,7 +202,7 @@ Based on the observations, there is a high degree of cardinality, or many unique
     
 I utilized the following code - *fraud_df['job'].value_counts().plot()* - to provide a visualization of the high cardinality, which is below.
 
-![Job - High Cardinality](image_8.png)
+![Job - High Cardinality](images/image_8.png)
 
 ### Date of Birth of Credit Card Holder
 
@@ -220,7 +220,7 @@ Based on the observations, there is a high degree of cardinality, or many unique
     
 I utilized the following code - *fraud_df['dob'].value_counts().plot()* - to provide a visualization of the high cardinality, which is below.
 
-![Date of Birth - High Cardinality](image_9.png)
+![Date of Birth - High Cardinality](images/image_9.png)
 
 ### Transaction Number
 
@@ -234,7 +234,7 @@ Based on the observations, this column has the highest degree of cardinality in 
     
 I utilized the following code - *fraud_df['trans_num'].value_counts().plot()* - to provide a visualization of the high cardinality, which is below.
 
-![Transaction Number - High Cardinality](image_10.png)
+![Transaction Number - High Cardinality](images/image_10.png)
 
 # Data Preparation
 
