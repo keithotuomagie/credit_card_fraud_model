@@ -74,7 +74,7 @@ I also want to note there is a row with the following entry - *1"2020-12-24 16:5
 
 A bar chart that breaks down the non-fradulent and fradulent cases is below.
 
-![Breakdown of Fraud Cases](image_1.png)
+![Breakdown of Fraud Cases](images/image_1.png)
 
 ### Merchant Name
 
