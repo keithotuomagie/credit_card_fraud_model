@@ -787,4 +787,45 @@ I want to explore importance of Transactions within the Decision Tree Model and 
 
 ## Overall Conclusion
 
+I created a total of six models in order to detect credit card fraud.  The models and their respective recall scores are below:
+    
+- Baseline Decision Tree Model (91.7%)
+- Tuned Decision Tree Model (94.3%)
+- Baseline Random Forest Model (89.2%)
+- Tuned Random Forest Model (77.6%)
+- Baseline Gradient Boosting Model (89.3%)
+- Tuned Gradient Boosting Model (92.9%)
+
+The Tuned Decision Tree Model performed the best.
+
+As a follow-up, I examined which columns, or features, are the most important for the Tuned Decision Tree Model.  Credit card transaction amount is the most important feature of the Tuned Decision Tree Model.
+
+I created a new column to further examine credit card transaction amount as a feature.  Within the new column, I created bins to break down the credit card transaction amounts into various segmentations.
+
+96% of the credit card transactions in the following two bins - 1) 750 to 999.99, and 2) 1000 to 1249.99 - are fradulent.
+
 ## Recommendations
+
+Recommendations and next steps are the following:
+    
+**1. Additional Data**
+
+The dataset to create the credit card fraud detection model is only composed of the Western United States.  As due diligence, data needs to be collected for the Eastern United States.
+
+The dataset only contained credit card transactions for the years 2020 and 2021.  Data needs to be collected for subsequent years in order to further refine the model.
+
+**2. Operations Management**
+
+In regards to hours, credit card fraud cases are the most numerous as midnight approaches.
+
+In regards to months, credit card fraud cases peak in the month of January.
+
+Addressing credit card fraud encompasses manual labor.  This entails, but not limited to, receiving potential credit card fraud inquiries by phone and investigation.  Line balancing - a production strategy concept that is utilized production for an assembly line - can be utilized here.
+
+Pending its entrance into the credit card business, the respective financial services company can increase the number of employees around midnight and the month of January.
+
+**3. Security Protocols**
+
+Increase security protocols can help address credit card fraud.  As cited earlier, 96% of credit card transactions in the following segments - 1) 750 to 999.99, and 2) 1000 to 1249.99 - are fradulent.  
+
+As an example, single-factor authentication (SFA) only requires one form of identification such as a password.  For credit card transactions in the aforementioned segments, multi-factor authentication (MFA) can be employed.  The credit card holder does not only provide a password or pin, but the credit card holder has to adhere to another level of security.  This entails, but not limited to, a text message sent to the credit card holder's smartphone, fingerprint, facial recognition, and/or voice pattern.
