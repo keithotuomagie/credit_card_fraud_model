@@ -358,6 +358,8 @@ I have completed the Data Preparation stage.  I will use three sets of models fo
 - Random Forest
 - Gradient Boosting
 
+## Train-Test Split
+
 I utilized the following code - *X = pd.get_dummies(X, drop_first=True)* - to create dummy variables for the categorical variables.
 
 There are a total of 24 columns in the X variable.  This is due to the Category of Merchant column containing 14 unique values, which are the following:
@@ -782,6 +784,12 @@ I want to explore importance of Transactions within the Decision Tree Model and 
 ![Transaction Amount against Fraud](images/image_51.png)
 
 ![Transaction Amount against Fraud (Initial 6 Segments)](images/image_52.png)
+
+I created two graphs - 1) *Transaction Amount against Fraud*, 2) *Transaction Amount against Fraud (Initial 6 Segments)* - to understand the bins in which fraud takes place the most.
+
+The following two bins - 1) 750 to 999.99, and 2) 1000 to 1249.99 - have scores of 0.96.  The interpretation is that 96% of the transactions in the aforementioned bins are fradulent.
+
+My initial reaction is that credit card transactions within these segmentations need increased security protocols.
 
 # Overall Conclusion and Recommendations
 
