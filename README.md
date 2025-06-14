@@ -385,11 +385,11 @@ In addition, the Region column contains 5 different unique values, which are the
 
 ## Baseline Decision Tree Model
 
-![Baseline Decision Tree Model Confusion Matrix](image_19.png)
+![Baseline Decision Tree Model Confusion Matrix](images/image_19.png)
 
-![Baseline Decision Tree Model Receiver operating characteristic (ROC) Curve](image_20.png)
+![Baseline Decision Tree Model Receiver operating characteristic (ROC) Curve](images/image_20.png)
 
-![Baseline Decision Tree Model Precision Recall Curve](image_21.png)
+![Baseline Decision Tree Model Precision Recall Curve](images/image_21.png)
 
 ### Baseline Decision Tree Model | Conclusion
 
@@ -430,19 +430,19 @@ There are multiple variables in which I want to tune the decision tree classifie
 - Minimum Sample Leafs (*min_samples_leaf*) - minimum number of samples for a leaf node, or terminal node
 - Maximum Features (*max_features*) - maximum number of features considered for making a split at a tree node
 
-![Maximum Tree Depth for the Decision Tree Model](image_22.png)
+![Maximum Tree Depth for the Decision Tree Model](images/image_22.png)
 
 The optimal tree depth is approximately 4.  After a tree depth of 4, the AUC scores for the train and test data begin to bifurcate.
 
-![Minimum Sample Split for the Decision Tree Model](image_23.png)
+![Minimum Sample Split for the Decision Tree Model](images/image_23.png)
 
 The optimal minimum sample split is approximately 0.1.  The AUC scores for the train and test data tend to move together; however, the AUC scores for the train and test data continue to decrease.
 
-![Minimum Sample Leaf for the Decision Tree Model](image_24.png)
+![Minimum Sample Leaf for the Decision Tree Model](images/image_24.png)
 
 The optimum minimum sample leaf is approximately 0.10.  The AUC scores associated with the train and test data tend to remain converged; however, the AUC scores for the train and test data continue to decrease.
 
-![Maximum Features for the Decision Tree Model](image_25.png)
+![Maximum Features for the Decision Tree Model](images/image_25.png)
 
 There is no optimal value for Maximum Features.  The AUC scores for the train and test data remain disparate throughout the graph.
 
@@ -456,11 +456,11 @@ I have created the pipeline and grid search object.  When I utilized the followi
 - minimum samples leaf: 0.15
 - minimum samples split: 0.1
 
-![Confusion Matrix for Tuned Decision Tree Model](image_26.png)
+![Confusion Matrix for Tuned Decision Tree Model](images/image_26.png)
 
-![Baseline Decision Tree Model Receiver operating characteristic (ROC) Curve](image_27.png)
+![Baseline Decision Tree Model Receiver operating characteristic (ROC) Curve](images/image_27.png)
 
-![Baseline Decision Tree Model Precision Recall Curve](image_28.png)
+![Baseline Decision Tree Model Precision Recall Curve](images/image_28.png)
 
 ### Tuned Decision Tree Model | Conclusion
 
@@ -508,11 +508,11 @@ I will proceed with created another set of models via Random Forest algorithm.
 
 ## Baseline Random Forest Model
 
-![Baseline Random Forest Model Confusion Matrix](image_29.png)
+![Baseline Random Forest Model Confusion Matrix](images/image_29.png)
 
-![Baseline Random Forest Model Receiver operating characteristic (ROC) Curve](image_30.png)
+![Baseline Random Forest Model Receiver operating characteristic (ROC) Curve](images/image_30.png)
 
-![Baseline Random Forest Model Precision Recall Curve](image_31.png)
+![Baseline Random Forest Model Precision Recall Curve](images/image_31.png)
 
 ### Baseline Random Forest Model | Conclusion
 
@@ -545,19 +545,19 @@ There are multiple variables in which I want to tune the random forest model. I 
 - Minimum Sample Leafs (min_samples_leaf) - minimum number of samples for a leaf node, or terminal node
 - Maximum Features (max_features) - maximum number of features considered for making a split at a tree node
 
-![Maximum Tree Depth for the Random Forest Model](image_32.png)
+![Maximum Tree Depth for the Random Forest Model](images/image_32.png)
 
 The optimal maximum tree depth is approximately 3.  After a tree depth of approximately 3, the AUC scores for the test and train data start to bifurcate.
 
-![Minimum Sample Split for the Random Forest Model](image_33.png)
+![Minimum Sample Split for the Random Forest Model](images/image_33.png)
 
 The optimal minimum sample split is approximately 0.1.  After approximately 0.1, the AUC scores for the test and train data remain converged; however, the AUC scores for the train and test data decrease throughout the graph.
 
-![Minimum Sample Leaf for the Random Forest Model](image_34.png)
+![Minimum Sample Leaf for the Random Forest Model](images/image_34.png)
 
 The optimal minimum sample leaf is approximately 0.10.  The AUC scores for the training and test data are together throughout the graph; however, the AUC scores for the training and test data decreases.
 
-![Maximum Features for the Random Forest Model](image_35.png)
+![Maximum Features for the Random Forest Model](images/image_35.png)
 
 The optimal minimum sample leaf is approximately 0.10.  The AUC scores for the training and test data are together throughout the graph; however, the AUC scores for the training and test data decreases.
 
@@ -573,11 +573,11 @@ I have created the pipeline and grid search object. When I utilized the followin
 - minimum samples leaf: 0.25
 - minimum samples split: 0.5
 
-![Confusion Matrix for Tuned Random Forest Model](image_36.png)
+![Confusion Matrix for Tuned Random Forest Model](images/image_36.png)
 
-![Tuned Random Forest Model Receiver operating characteristic (ROC) Curve](image_37.png)
+![Tuned Random Forest Model Receiver operating characteristic (ROC) Curve](images/image_37.png)
 
-![Tuned Random Forest Model Precision Recall Curve](image_38.png)
+![Tuned Random Forest Model Precision Recall Curve](images/image_38.png)
 
 ### Tuned Random Forest Model | Conclusion
 
@@ -621,11 +621,11 @@ I will proceed with created another set of models via Gradient Boosting algorith
 
 ## Baseline Gradient Boosting Model
 
-![Baseline Gradient Boosting Model Confusion Matrix](image_39.png)
+![Baseline Gradient Boosting Model Confusion Matrix](images/image_39.png)
 
-![Baseline Gradient Boosting Model Receiver operating characteristic (ROC) Curve](image_40.png)
+![Baseline Gradient Boosting Model Receiver operating characteristic (ROC) Curve](images/image_40.png)
 
-![Baseline Gradient Boosting Model Precision Recall Curve](image_41.png)
+![Baseline Gradient Boosting Model Precision Recall Curve](images/image_41.png)
 
 ### Baseline Gradient Boosting Model
 
@@ -658,19 +658,19 @@ There are multiple variables in which I want to tune the random forest model. I 
 - Minimum Sample Leafs (min_samples_leaf) - minimum number of samples for a leaf node, or terminal node
 - Maximum Features (max_features) - maximum number of features considered for making a split at a tree node
 
-![Maximum Tree Depth for the Gradient Boosting Model](image_42.png)
+![Maximum Tree Depth for the Gradient Boosting Model](images/image_42.png)
 
 The optimal maximum tree depth is approximately 2.  After a tree depth of 2, the AUC scores of the test data and training data start to bifurcate.
 
-![Minimum Sample Split for the Gradient Boosting Model](image_43.png)
+![Minimum Sample Split for the Gradient Boosting Model](images/image_43.png)
 
 There is no optimal minimum sample split identified.  The AUC scores for the training data and test data are bifurcated throughout the graph.
 
-![Minimum Sample Leaf for the Gradient Boosting Model](image_44.png)
+![Minimum Sample Leaf for the Gradient Boosting Model](images/image_44.png)
 
 The optimal minimum sample leaf is approximately 0.10.  As the number of minimum sample leafs increase via the graph, the AUC scores for the training data and test data move together.  However, the scores for the training data and test data decreases.
 
-![Maximum Features for the Gradient Boosting Model](image_45.png)
+![Maximum Features for the Gradient Boosting Model](images/image_45.png)
 
 There is no optimal maximum features identified.  Throughout the graph, the AUC scores for the training and test data are bifurcated.
 
@@ -685,11 +685,11 @@ I have created the pipeline and grid search object. When I utilized the followin
 - minimum sample leaf: 0.05
 - minimum weight fraction: 0.0
 
-![Confusion Matrix for Tuned Gradient Boosting Model](image_46.png)
+![Confusion Matrix for Tuned Gradient Boosting Model](images/image_46.png)
 
-![Tuned Gradient Boosting Model Receiver operating characteristic (ROC) Curve](image_47.png)
+![Tuned Gradient Boosting Model Receiver operating characteristic (ROC) Curve](images/image_47.png)
 
-![Tuned Gradient Boosting Model Precision Recall Curve](image_48.png)
+![Tuned Gradient Boosting Model Precision Recall Curve](images/image_48.png)
 
 ### Tuned Gradient Boosting Model | Conclusion
 
@@ -752,7 +752,7 @@ Transaction Amount has a (importance) score of 0.867.  And Month has a (importan
 
 The bar graph below displays the breakdown of the feature importance scores.
 
-![Breakdown of Feature Importance Scores for Transaction Column](image_49.png)
+![Breakdown of Feature Importance Scores for Transaction Column](images/image_49.png)
 
 ### Transaction Amount vs. Fraud
 
@@ -760,7 +760,7 @@ I utilized the following code - *fraud_df['amt'].describe()* - to re-examine the
 
 The data is positively skewed.  This is evidenced by the mean, or approximately 122.71, being greater than the median, or approximatley 51.29.  I created a histogram below in order to visualize the positive skew.
 
-![Histogram of Credit Card Transaction Amount](image_50.png)
+![Histogram of Credit Card Transaction Amount](images/image_50.png)
 
 I want to explore importance of Transactions within the Decision Tree Model and dataframe as a whole.  I will start by creating a new column that create bins for the *fraud_df['amt']* column.  The new column will be Amount Breakdown, or *fraud_df['amt_breakdown']*.  The breakdown of the bins are the following:
 
@@ -779,9 +779,9 @@ I want to explore importance of Transactions within the Decision Tree Model and 
 - 3000 to 3249.99
 - 3250 to 3499.99
 
-![Transaction Amount against Fraud](image_51.png)
+![Transaction Amount against Fraud](images/image_51.png)
 
-![Transaction Amount against Fraud (Initial 6 Segments)](image_52.png)
+![Transaction Amount against Fraud (Initial 6 Segments)](images/image_52.png)
 
 # Overall Conclusion and Recommendations
 
