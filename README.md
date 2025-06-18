@@ -793,6 +793,10 @@ My initial reaction is that credit card transactions within these segmentations 
 
 # Overall Conclusion and Recommendations
 
+Credit card fraud is increasing year over year.  The number of attempts is approximately increasing by 46% year-over-year.  In the US, credit card losses are projected to reach $12.5 billion by 2025.
+
+As a result, it is paramount for any business - existing or newcomers - to have a strategy and proactive approach for confronting this deceptive practice.
+
 ## Overall Conclusion
 
 I created a total of six models in order to detect credit card fraud.  The models and their respective recall scores are below:
