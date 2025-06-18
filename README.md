@@ -841,3 +841,23 @@ Pending its entrance into the credit card business, the respective financial ser
 Increase security protocols can help address credit card fraud.  As cited earlier, 96% of credit card transactions in the following segments - 1) 750 to 999.99, and 2) 1000 to 1249.99 - are fradulent.  
 
 As an example, single-factor authentication (SFA) only requires one form of identification such as a password.  For credit card transactions in the aforementioned segments, multi-factor authentication (MFA) can be employed.  The credit card holder does not only provide a password or pin, but the credit card holder has to adhere to another level of security.  This entails, but not limited to, a text message sent to the credit card holder's smartphone, fingerprint, facial recognition, and/or voice pattern.
+
+# References
+
+## Articles and Books
+
+- Cachon, Gerard, and Christian Terwiesch. "Matching Supply with Demand: An Introduction to Operations Management". *McGraw-Hill Irwin*, 2009. Print  
+
+- Rej, Matt. "Credit Card Fraud Statistics (2025)". *Merchant Cost Consulting*, 9 December 2024, https://merchantcostconsulting.com/lower-credit-card-processing-fees/credit-card-fraud-statistics/#:~:text=46%25%20of%20global%20credit%20card,the%20US%20is%20up%20140%25 
+
+- Schneider, Josh, and Ian Smalley. "What is transaction security?". *IBM*, 15 April 2024, https://www.ibm.com/think/topics/transaction-security#:~:text=To%20prevent%20financial%20losses%20resulting,mitigating%20any%20internal%20security%20vulnerabilities
+
+- "Payment security: An in-depth, actionable guide for businesses". *Stripe*, 29 June 2023, https://stripe.com/resources/more/payment-security
+
+- "Secure payments systems explained: Nine components every business should know". *Stripe*, 14 February 2025, https://stripe.com/resources/more/secure-payment-systems-explained#:~:text=high%2Dsecurity%20standards.-,PCI%20DSS%20compliance,strengthening%20payment%20card%20transaction%20systems.&text=Data%20protection:%20PCI%20DSS%20mandates,information%20security%20for%20all%20personnel
+
+## GitHub
+
+1. ![Jupyter notebook](notebook.ipynb)
+2. ![images](images)
+3. ![presentation](presentation.pdf)
